@@ -15,10 +15,19 @@ class User extends Model {
         userInstance.password = await Hash.make(userInstance.password)
       }
     })
+
   }
 
   tokens() {
     return this.hasMany('App/Models/Token')
+  }
+
+  project() {
+    return this.hasMany('App/Models/Project')
+  }
+
+  tasks() {
+    return this.hasMany('App/Models/Task')
   }
 }
 
