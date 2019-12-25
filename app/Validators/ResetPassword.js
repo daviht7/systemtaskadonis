@@ -1,5 +1,8 @@
 'use strict'
 
+const Antl = use("Antl")
+
+
 class ResetPassword {
 
   /*faz com que todos campos sejam validados ao mesmo tempo */
@@ -13,6 +16,10 @@ class ResetPassword {
       token: "required",
       password: "required|confirmed"
     }
+  }
+
+  get messages() {
+    return Antl.list("validation")
   }
 }
 

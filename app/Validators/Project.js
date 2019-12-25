@@ -1,5 +1,8 @@
 'use strict'
 
+const Antl = use("Antl")
+
+
 class Project {
 
   /*faz com que todos campos sejam validados ao mesmo tempo */
@@ -12,6 +15,10 @@ class Project {
       title: "required",
       description: "required"
     }
+  }
+
+  get messages() {
+    return Antl.list("validation")
   }
 }
 
