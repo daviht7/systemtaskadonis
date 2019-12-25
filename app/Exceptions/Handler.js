@@ -3,6 +3,8 @@
 const BaseExceptionHandler = use('BaseExceptionHandler')
 const Env = use("Env")
 const Youch = use("Youch")
+const Raven = require("raven")
+const Config = use("Config")
 
 
 class ExceptionHandler extends BaseExceptionHandler {
@@ -28,6 +30,10 @@ class ExceptionHandler extends BaseExceptionHandler {
 
 
   async report (error, { request }) {
+
+    Raven.config(Config.get("services.sentry.dsn"))
+    Raven.captureException(error)
+
   }
 }
 
