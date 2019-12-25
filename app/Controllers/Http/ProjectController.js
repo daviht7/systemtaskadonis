@@ -4,30 +4,18 @@ const Project = use("App/Models/Project")
 
 
 class ProjectController {
-  /**
-   * Show a list of all projects.
-   * GET projects
-   *
-   * @param {object} ctx
-   * @param {Request} ctx.request
-   * @param {Response} ctx.response
-   * @param {View} ctx.view
-   */
-  async index ({ request, response, view }) {
-    const projects = await Project.query().with("user").fetch()
+
+  async index ({ request }) {
+
+    const {page} = request.get()
+
+    const projects = await Project
+    .query()
+    .with("user")
+    .paginate(page)
 
     return projects;
   }
-
-  /**
-   * Render a form to be used for creating a new project.
-   * GET projects/create
-   *
-   * @param {object} ctx
-   * @param {Request} ctx.request
-   * @param {Response} ctx.response
-   * @param {View} ctx.view
-   */
 
   async store ({ request, response,auth }) {
 
